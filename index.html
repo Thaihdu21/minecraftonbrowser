@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft Clone</title>
+  <link rel="stylesheet" href="styles/style.css" />
+</head>
+<body>
+  <div id="loading-screen">
+    <div class="loading-content">
+      <h1>MINECRAFT CLONE</h1>
+      <div class="loading-bar-container">
+        <div class="loading-bar" id="loading-bar"></div>
+      </div>
+      <p id="loading-text">Generating world...</p>
+    </div>
+  </div>
+
+  <div id="overlay" class="hidden">
+    <div class="overlay-content">
+      <h2>PAUSED</h2>
+      <p>Click to resume</p>
+      <div class="controls-info">
+        <h3>Controls</h3>
+        <ul>
+          <li>WASD - Move</li>
+          <li>Space - Jump</li>
+          <li>Shift - Sprint</li>
+          <li>Left Click - Break Block</li>
+          <li>Right Click - Place Block</li>
+          <li>1-5 - Select Block</li>
+          <li>Scroll - Select Block</li>
+          <li>ESC - Pause</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="ui">
+    <div id="crosshair">+</div>
+    <div id="hud">
+      <div id="stats">
+        <span id="fps">FPS: 0</span>
+        <span id="coords">X: 0 Y: 0 Z: 0</span>
+        <span id="chunk-info">Chunk: 0, 0</span>
+      </div>
+    </div>
+    <div id="hotbar-container">
+      <div id="hotbar"></div>
+    </div>
+  </div>
+
+  <canvas id="game-canvas"></canvas>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
