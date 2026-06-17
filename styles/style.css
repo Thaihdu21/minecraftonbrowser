@@ -1,0 +1,239 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  color: white;
+  user-select: none;
+}
+
+#game-canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Loading Screen */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #1a1a2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.5s;
+}
+
+#loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-content {
+  text-align: center;
+}
+
+.loading-content h1 {
+  font-size: 3rem;
+  color: #4CAF50;
+  text-shadow: 0 0 20px #4CAF50;
+  margin-bottom: 2rem;
+  letter-spacing: 4px;
+}
+
+.loading-bar-container {
+  width: 400px;
+  height: 20px;
+  background: #333;
+  border: 2px solid #555;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 auto 1rem;
+}
+
+.loading-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+#loading-text {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* Overlay / Pause Menu */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+.overlay-content {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem 3rem;
+  border: 2px solid #555;
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+.overlay-content h2 {
+  font-size: 2rem;
+  color: #4CAF50;
+  margin-bottom: 0.5rem;
+  letter-spacing: 4px;
+}
+
+.overlay-content > p {
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+
+.controls-info h3 {
+  color: #8BC34A;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+.controls-info ul {
+  list-style: none;
+  text-align: left;
+}
+
+.controls-info li {
+  color: #ccc;
+  font-size: 0.8rem;
+  padding: 2px 0;
+}
+
+.controls-info li::before {
+  content: '▸ ';
+  color: #4CAF50;
+}
+
+/* HUD / UI */
+#ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  line-height: 1;
+}
+
+#hud {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+#stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#stats span {
+  font-size: 12px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  background: rgba(0,0,0,0.3);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+/* Hotbar */
+#hotbar-container {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#hotbar {
+  display: flex;
+  gap: 4px;
+  background: rgba(0,0,0,0.5);
+  padding: 4px;
+  border: 2px solid #555;
+  border-radius: 4px;
+}
+
+.hotbar-slot {
+  width: 50px;
+  height: 50px;
+  background: rgba(50,50,50,0.8);
+  border: 2px solid #666;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.1s;
+}
+
+.hotbar-slot.active {
+  border-color: #fff;
+  background: rgba(80,80,80,0.9);
+}
+
+.hotbar-slot .slot-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+.hotbar-slot .slot-number {
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  font-size: 9px;
+  color: #aaa;
+}
+
+.hotbar-slot .slot-name {
+  font-size: 8px;
+  color: #ccc;
+  margin-top: 1px;
+  text-align: center;
+  max-width: 44px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Block outline highlight */
+.block-outline {
+  position: absolute;
+  pointer-events: none;
+}
